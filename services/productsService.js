@@ -1,6 +1,17 @@
+const Joi = require('joi');
 const productsModel = require('../models/productsModel');
 
 const productsService = {
+  validateNameBody(name) {
+    const schema = Joi.object({
+      name: Joi.string().required(),
+    });
+
+    const { error, value } = schema.validate(name);
+    if (error) return null;
+    return value;
+  },
+
   async listProducuts() {
     const items = await productsModel.listProducuts();
     return items;
@@ -9,6 +20,11 @@ const productsService = {
   async getProduct(id) {
     const item = await productsModel.getProduct(id);
     return item;
+  },
+
+  async createProduct({ name }) {
+    const id = await productsModel.createProduct({ name });
+    return id;
   },
 };
 
