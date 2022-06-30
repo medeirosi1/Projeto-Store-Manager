@@ -24,7 +24,6 @@ const productsController = {
     } 
     const id = await productsService.createProduct(name);
     const item = await productsService.getProduct(id);
-    console.log(item);
     res.status(201).json(item);
   },
 };
