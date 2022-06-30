@@ -31,6 +31,25 @@ describe('Products Service', () => {
         expect(getProductId).to.be.equal(id);
       })
     })
+
+    describe('validateNameBody', () => {
+      it('Verifica se mandar um objeto ele retorna váido', () => {
+        const object = productsService.validateNameBody({ name: 'Name Teste' });
+        expect(object).to.be.deep.equal({ name: 'Name Teste' })
+      });
+      it('Verifica se é enviando null na hora de enviar um name vazio', () => {
+        const objectVazio = productsService.validateNameBody({ name: '' });
+      })
+    })
+
+    describe('createProduct', () => {
+      it('Verifica se retorna o id certo', async () => {
+        const expectedId = { name: 'Name teste' }
+        sinon.stub(productsModel, 'createProduct').resolves(expectedId)
+        const id = await productsService.createProduct(expectedId)
+        expect(id).to.be.deep.equal(expectedId);
+      })
+    })
   });
     
     

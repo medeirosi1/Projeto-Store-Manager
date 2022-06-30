@@ -40,5 +40,15 @@ describe('Products Model', () => {
         expect(getProductId).to.be.equal(id);
       })
     })
+
+    describe('createProduct', () => {
+      it('Verifica se retorna o id ao criar o produto com o atributo name', async () => {
+        const expectedId = { insertId: 1 }
+        const idExpect = 1
+        sinon.stub(connection, 'execute').resolves([expectedId])
+        const id = await productsModel.createProduct({ name: 'Name Teste' });
+        expect(id).to.be.equal(idExpect);
+      })
+    })
   })
 })
