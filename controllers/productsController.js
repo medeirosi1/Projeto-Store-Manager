@@ -15,6 +15,18 @@ const productsController = {
     const item = await productsService.getProduct(id);
     res.status(200).json(item);
   },
+
+  async createProduct(req, res) {
+    const name = await productsService.validateNameBody(req.body);
+    if (name === null) return res.status(400).json({ message: '"name" is required' });
+    if (name.name.length < 5) {
+      return res.status(422).json({ message: '"name" length must be at least 5 characters long' });
+    } 
+    const id = await productsService.createProduct(name);
+    const item = await productsService.getProduct(id);
+    console.log(item);
+    res.status(201).json(item);
+  },
 };
 
 module.exports = productsController;
