@@ -34,6 +34,7 @@ const productsService = {
 
   async removeProduct(id) {
     await productsModel.removeProduct(id);
+    return true;
   },
 };
 
