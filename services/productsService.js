@@ -29,6 +29,7 @@ const productsService = {
 
   async editProduct(id, change) {
     await productsModel.editProduct(id, change.name);
+    return true;
   },
 };
 
