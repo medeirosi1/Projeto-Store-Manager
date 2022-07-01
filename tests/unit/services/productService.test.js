@@ -50,6 +50,14 @@ describe('Products Service', () => {
         expect(id).to.be.deep.equal(expectedId);
       })
     })
+
+    describe('editProduct', () => {
+      it('Verifica se retorna true ao mandar um objeto válido', async () => {
+        sinon.stub(productsModel, 'editProduct').resolves(true);
+        const change = await productsService.editProduct(1, { name: 'Name Teste' });
+        expect(change).to.be.eq(true);
+      })
+    })
   });
     
     

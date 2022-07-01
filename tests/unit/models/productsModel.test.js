@@ -50,5 +50,13 @@ describe('Products Model', () => {
         expect(id).to.be.equal(idExpect);
       })
     })
+
+    describe('editProduct', () => {
+      it('Verifica se retorna true ao mandar uma mudança valida', async () => {
+        sinon.stub(connection, 'execute').resolves([{affectedRows: 1}]);
+        const change = await productsModel.editProduct(1, { name: 'Name Teste' });
+        expect(change).to.be.equal(1);
+      })
+    })
   })
 })
