@@ -41,6 +41,15 @@ const productsController = {
     const item = await productsService.getProduct(id);
     res.status(200).json(item);
   },
+
+  async removeProduct(req, res) {
+    const { id } = req.params;
+    if (!await productsModel.existsId(id)) { 
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    await productsService.removeProduct(id);
+    res.status(204).end();
+  },
 };
 
 module.exports = productsController;
