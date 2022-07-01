@@ -33,7 +33,8 @@ const productsModel = {
     const query = `UPDATE StoreManager.products 
     SET name = ?
     WHERE id = ? `;
-    await connection.execute(query, [change, id]);
+    const [result] = await connection.execute(query, [change, id]);
+    return result.affectedRows;
   },
 
 };
