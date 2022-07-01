@@ -58,5 +58,13 @@ describe('Products Model', () => {
         expect(change).to.be.equal(1);
       })
     })
+
+    describe('removeProduct', () => {
+      it('Verifica se retorna true ao mandar um delete valido', async () => {
+        sinon.stub(connection, 'execute').resolves([{affectedRows: 1}]);
+        const change = await productsModel.removeProduct(1, { name: 'Name Teste' });
+        expect(change).to.be.equal(1);
+      })
+    })
   })
 })

@@ -58,6 +58,13 @@ describe('Products Service', () => {
         expect(change).to.be.eq(true);
       })
     })
+    describe('removeProduct', () => {
+      it('Verifica se retorna true ao mandar um id válido', async () => {
+        sinon.stub(productsModel, 'removeProduct').resolves(true);
+        const id = await productsService.removeProduct(1);
+        expect(id).to.be.eq(true);
+      })
+    })
   });
     
     
