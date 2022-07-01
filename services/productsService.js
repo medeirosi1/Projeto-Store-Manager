@@ -26,6 +26,10 @@ const productsService = {
     const id = await productsModel.createProduct({ name });
     return id;
   },
+
+  async editProduct(id, change) {
+    await productsModel.editProduct(id, change.name);
+  },
 };
 
 module.exports = productsService;
