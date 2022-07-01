@@ -48,7 +48,7 @@ const productsController = {
       return res.status(404).json({ message: 'Product not found' });
     }
     await productsService.removeProduct(id);
-    res.sendStatus(204);
+    res.status(204).end();
   },
 };
 
